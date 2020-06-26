@@ -1,12 +1,26 @@
 import Head from 'next/head';
+import { useState, useEffect } from 'react';
 
+import { fetchMovies } from '../actions';
 import Navbar from '../components/Navbar';
 import Sidemenu from '../components/Sidemenu';
 import Carousel from '../components/ Carousel';
 import MovieList from '../components/MovieList';
 import Footer from '../components/Footer';
 
+const movies = fetchMovies();
+
 export default function Home() {
+  const [movies, setMovies] = useState([]);
+
+  useEffect(() => {
+    const fetchMoviesApi = async () => {
+      setMovies(await fetchMovies);
+    };
+
+    fetchMoviesApi();
+  }, []);
+
   return (
     <div>
       <Head>
@@ -47,7 +61,7 @@ export default function Home() {
               <Carousel />
 
               <div className='row'>
-                <MovieList />
+                <MovieList movies={movies} />
               </div>
             </div>
           </div>
