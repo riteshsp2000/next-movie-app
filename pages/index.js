@@ -61,7 +61,11 @@ export default function Home() {
               <Carousel />
 
               <div className='row'>
-                <MovieList movies={movies} />
+                {movies.length === 0 ? (
+                  <MovieList movies={movies} />
+                ) : (
+                  <div> Loading.... </div>
+                )}
               </div>
             </div>
           </div>
