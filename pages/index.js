@@ -6,8 +6,7 @@ import MovieList from '../components/MovieList';
 
 const movies = fetchMovies();
 
-const Home = ({ movies }) => {
-  console.log(movies);
+const Home = ({ movies, movieImages }) => {
   return (
     <div className='container'>
       <div className='row'>
@@ -16,7 +15,7 @@ const Home = ({ movies }) => {
         </div>
 
         <div className='col-lg-9'>
-          <Carousel />
+          <Carousel images={movieImages} />
 
           <div className='row'>
             <MovieList movies={movies} />
@@ -29,8 +28,15 @@ const Home = ({ movies }) => {
 
 Home.getInitialProps = async () => {
   const movies = await fetchMovies();
+  const movieImages = movies.map((movie) => {
+    return {
+      id: movie.id,
+      url: movie.image,
+      alt: movie.name,
+    };
+  });
 
-  return { movies };
+  return { movies, movieImages };
 };
 
 export default Home;

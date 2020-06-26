@@ -1,4 +1,5 @@
-const Carousel = () => {
+const Carousel = ({ images }) => {
+  console.log(images);
   return (
     <div
       id='carouselExampleIndicators'
@@ -6,36 +7,29 @@ const Carousel = () => {
       data-ride='carousel'
     >
       <ol className='carousel-indicators'>
-        <li
-          data-target='#carouselExampleIndicators'
-          data-slide-to='0'
-          className='active'
-        ></li>
-        <li data-target='#carouselExampleIndicators' data-slide-to='1'></li>
-        <li data-target='#carouselExampleIndicators' data-slide-to='2'></li>
+        {images.map((image, index) => {
+          return (
+            <li
+              data-target='#carouselExampleIndicators'
+              data-slide-to={index}
+              className={index === 0 ? 'active' : ''}
+            ></li>
+          );
+        })}
       </ol>
+
       <div className='carousel-inner' role='listbox'>
-        <div className='carousel-item active'>
-          <img
-            className='d-block img-fluid'
-            src='http://placehold.it/900x350'
-            alt='First slide'
-          />
-        </div>
-        <div className='carousel-item'>
-          <img
-            className='d-block img-fluid'
-            src='http://placehold.it/900x350'
-            alt='Second slide'
-          />
-        </div>
-        <div className='carousel-item'>
-          <img
-            className='d-block img-fluid'
-            src='http://placehold.it/900x350'
-            alt='Third slide'
-          />
-        </div>
+        {images.map((image, index) => {
+          return (
+            <div className={`carousel-item ${index === 0 ? 'active' : ''}`}>
+              <img
+                className='d-block img-fluid custom-image'
+                src={image.url}
+                alt={image.alt}
+              />
+            </div>
+          );
+        })}
       </div>
       <a
         className='carousel-control-prev'
@@ -55,6 +49,13 @@ const Carousel = () => {
         <span className='carousel-control-next-icon' aria-hidden='true'></span>
         <span className='sr-only'>Next</span>
       </a>
+
+      <style jsx>{`
+        .custom-image {
+          width: 100%;
+          height: 20rem;
+        }
+      `}</style>
     </div>
   );
 };
