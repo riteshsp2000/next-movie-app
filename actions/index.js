@@ -1,4 +1,4 @@
-const movies = [
+const MOVIES = [
   {
     id: '1',
     name: 'The Shawshank Redemption',
@@ -35,5 +35,13 @@ const movies = [
 ];
 
 export const fetchMovies = () => {
-  return movies;
+  return MOVIES;
+};
+
+export const getMovieById = async (id) => {
+  const movieIndex = MOVIES.findIndex((movie) => {
+    return movie.id === id;
+  });
+
+  return MOVIES[movieIndex];
 };
