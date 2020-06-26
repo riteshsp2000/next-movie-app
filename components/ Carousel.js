@@ -1,5 +1,4 @@
 const Carousel = ({ images }) => {
-  console.log(images);
   return (
     <div
       id='carouselExampleIndicators'
@@ -12,6 +11,7 @@ const Carousel = ({ images }) => {
             <li
               data-target='#carouselExampleIndicators'
               data-slide-to={index}
+              key={image.id}
               className={index === 0 ? 'active' : ''}
             ></li>
           );
@@ -21,7 +21,10 @@ const Carousel = ({ images }) => {
       <div className='carousel-inner' role='listbox'>
         {images.map((image, index) => {
           return (
-            <div className={`carousel-item ${index === 0 ? 'active' : ''}`}>
+            <div
+              key={image.id}
+              className={`carousel-item ${index === 0 ? 'active' : ''}`}
+            >
               <img
                 className='d-block img-fluid custom-image'
                 src={image.url}
@@ -53,7 +56,7 @@ const Carousel = ({ images }) => {
       <style jsx>{`
         .custom-image {
           width: 100%;
-          height: 20rem;
+          max-height: 20rem;
         }
       `}</style>
     </div>

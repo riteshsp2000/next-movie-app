@@ -1,4 +1,4 @@
-import { fetchMovies } from '../actions';
+import { fetchMovies, getCategory } from '../actions';
 
 import Sidemenu from '../components/Sidemenu';
 import Carousel from '../components/ Carousel';
@@ -6,12 +6,12 @@ import MovieList from '../components/MovieList';
 
 const movies = fetchMovies();
 
-const Home = ({ movies, movieImages }) => {
+const Home = ({ movies, movieImages, category }) => {
   return (
     <div className='container'>
       <div className='row'>
         <div className='col-lg-3'>
-          <Sidemenu />
+          <Sidemenu items={category} />
         </div>
 
         <div className='col-lg-9'>
@@ -36,7 +36,9 @@ Home.getInitialProps = async () => {
     };
   });
 
-  return { movies, movieImages };
+  const category = await getCategory();
+
+  return { movies, movieImages, category };
 };
 
 export default Home;
