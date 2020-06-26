@@ -1,5 +1,3 @@
-import { useState, useEffect } from 'react';
-
 import { fetchMovies } from '../actions';
 
 import Sidemenu from '../components/Sidemenu';
@@ -8,21 +6,8 @@ import MovieList from '../components/MovieList';
 
 const movies = fetchMovies();
 
-export default function Home() {
-  const [movies, setMovies] = useState([]);
-
-  // useEffect(() => {
-  //   const fetchMoviesApi = async () => {
-  //     setMovies(await fetchMovies());
-  //   };
-
-  //   fetchMoviesApi();
-  // }, []);
-
-  const getInitialprops = async () => {
-    setMovies(await fetchMovies());
-  };
-
+const Home = ({ movies }) => {
+  console.log(movies);
   return (
     <div className='container'>
       <div className='row'>
@@ -34,14 +19,18 @@ export default function Home() {
           <Carousel />
 
           <div className='row'>
-            {movies.length === 0 ? (
-              <MovieList movies={movies} />
-            ) : (
-              <div> Loading.... </div>
-            )}
+            <MovieList movies={movies} />
           </div>
         </div>
       </div>
     </div>
   );
-}
+};
+
+Home.getInitialProps = async () => {
+  const movies = await fetchMovies();
+
+  return { movies };
+};
+
+export default Home;
