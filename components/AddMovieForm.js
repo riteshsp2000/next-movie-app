@@ -1,9 +1,32 @@
+import { useState } from 'react';
+
 const AddMovieForm = () => {
+  const [form, setForm] = useState({
+    name: 'Lord of the Rings',
+    description: 'A really great movie',
+    rating: 4.9,
+    image: 'adsfjl',
+    cover: 'asdfljkd',
+  });
+
+  const handleChange = (event) => {
+    const target = event.target;
+    const name = target.name;
+
+    setForm({
+      ...form,
+      [name]: target.value,
+    });
+  };
+
   return (
     <form>
       <div className='form-group'>
         <label htmlFor='name'>Name</label>
         <input
+          name='name'
+          onChange={handleChange}
+          value={form.name}
           type='text'
           className='form-control'
           id='name'
@@ -14,6 +37,9 @@ const AddMovieForm = () => {
       <div className='form-group'>
         <label htmlFor='description'>Description</label>
         <input
+          name='description'
+          onChange={handleChange}
+          value={form.description}
           type='text'
           className='form-control'
           id='description'
@@ -23,6 +49,9 @@ const AddMovieForm = () => {
       <div className='form-group'>
         <label htmlFor='description'>Rating</label>
         <input
+          name='rating'
+          onChange={handleChange}
+          value={form.rating}
           type='number'
           max='5'
           min='0'
@@ -37,6 +66,9 @@ const AddMovieForm = () => {
       <div className='form-group'>
         <label htmlFor='image'>Image</label>
         <input
+          name='image'
+          onChange={handleChange}
+          value={form.image}
           type='text'
           className='form-control'
           id='image'
@@ -46,6 +78,9 @@ const AddMovieForm = () => {
       <div className='form-group'>
         <label htmlFor='cover'>Cover</label>
         <input
+          name='cover'
+          onChange={handleChange}
+          value={form.cover}
           type='text'
           className='form-control'
           id='cover'
