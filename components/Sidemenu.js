@@ -1,13 +1,19 @@
 import Link from 'next/link';
 
+import { createMovie } from '../actions';
 import Modal from './Modal';
 import AddMovieForm from './AddMovieForm';
 
 const Sidemenu = ({ items }) => {
+  const handleCreateMovie = async (movie) => {
+    const movies = await createMovie(movie);
+    console.log(movies);
+  };
+
   return (
     <div>
       <Modal>
-        <AddMovieForm />
+        <AddMovieForm handleFormSubmit={handleCreateMovie} />
       </Modal>
       <h1 className='my-4' id='categories-title'>
         Categories

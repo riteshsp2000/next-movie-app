@@ -72,3 +72,8 @@ export const getMovieById = async (id) => {
 export const getCategory = async () => {
   return CATEGORY;
 };
+
+export const createMovie = async (movie) => {
+  MOVIES.push(movie);
+  return MOVIES;
+};

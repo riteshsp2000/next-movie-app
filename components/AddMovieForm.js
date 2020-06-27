@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-const AddMovieForm = () => {
+const AddMovieForm = ({ handleFormSubmit }) => {
   const [form, setForm] = useState({
     name: 'Lord of the Rings',
     description: 'A really great movie',
@@ -36,8 +36,12 @@ const AddMovieForm = () => {
     });
   };
 
+  const handleSubmit = (movie) => {
+    handleFormSubmit(movie);
+  };
+
   return (
-    <form>
+    <form onSubmit={() => handleSubmit({ ...form })}>
       <div className='form-group'>
         <label htmlFor='name'>Name</label>
         <input
