@@ -1,9 +1,14 @@
 import Link from 'next/link';
 
+import Modal from './Modal';
+
 const Sidemenu = ({ items }) => {
   return (
     <div>
-      <h1 className='my-4'>Shop Name</h1>
+      <Modal />
+      <h1 className='my-4' id='categories-title'>
+        Categories
+      </h1>
       <div className='list-group'>
         {items.map((item) => {
           return (
@@ -13,6 +18,14 @@ const Sidemenu = ({ items }) => {
           );
         })}
       </div>
+
+      <style>
+        {`
+        h1#categories-title.my-4{
+          margin-top: 1rem !important;
+        }
+      `}
+      </style>
     </div>
   );
 };
