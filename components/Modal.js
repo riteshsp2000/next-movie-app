@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Modal = () => {
+const Modal = ({ children }) => {
   const closeButton = React.createRef();
 
   const handleModalSubmit = () => {
@@ -42,7 +42,7 @@ const Modal = () => {
                 <span aria-hidden='true'>&times;</span>
               </button>
             </div>
-            <div className='modal-body'>...</div>
+            <div className='modal-body'>{children}</div>
             <div className='modal-footer'>
               <button
                 type='button'

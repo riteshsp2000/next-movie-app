@@ -1,11 +1,14 @@
 import Link from 'next/link';
 
 import Modal from './Modal';
+import AddMovieForm from './AddMovieForm';
 
 const Sidemenu = ({ items }) => {
   return (
     <div>
-      <Modal />
+      <Modal>
+        <AddMovieForm />
+      </Modal>
       <h1 className='my-4' id='categories-title'>
         Categories
       </h1>
